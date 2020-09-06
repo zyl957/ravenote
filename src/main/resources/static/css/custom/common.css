@@ -1,0 +1,70 @@
+html,
+body {
+    height: 100%;
+    background-color: #b9def0;
+}
+footer.shortType{
+    color: #666666;
+    padding: 0 25%;
+    width: 100%;
+    height: 10px;
+    position: absolute;
+    bottom: 10px;
+}
+footer.longType{
+    color: #666666;
+    padding: 0 25%;
+    width: 100%;
+    height: 10px;
+    position: relative;
+    bottom: 10px;
+}
+.center-Container{
+    margin: 40px;
+    background-color: white;
+}
+
+.top-part{
+    height: 60px;
+}
+
+.topList{
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.listTitle{
+    font-size: 24px;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+
+}
+.main-display{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+
+#breadcrumb{
+    margin: 0;
+    background-color: white;
+    padding: 10px 20px 0;
+    font-size: 15px;
+}
+
+.mainNote{
+    margin: 5px 20px 5px;
+    padding: 0 30px;
+}
+
+.noteTime{
+    font-size: x-small;
+    color: grey;
+}
+
+.emptyWarning{
+    padding: 0 0 20px 20px;
+}
+

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <!-- common head block   -->
+    <th:block th:insert="~{fragments :: head}"></th:block>
+
+    <!-- simditor configuration -->
+    <th:block th:insert="~{fragments :: simditor}"></th:block>
+
+    <title>RaveNote - Edit Your Note</title>
+</head>
+<body onbeforeunload="return confirm()">
+
+    <div style="display: none">
+        <input id="sessU" type="hidden" th:value="${session.userAccount.getUsername()}">
+    </div>
+
+    <!-- Navigation bar -->
+    <div th:replace="fragments::nav"></div>
+
+    <!-- Store the note content secretly -->
+    <div class="hidden">
+        <label for = "hiddenContext"></label>
+        <textarea id="hiddenContext" cols="30" rows="10" th:utext="${note.getContent()}"></textarea>
+    </div>
+
+    <!-- Create Notes area -->
+    <div th:if="${session.userAccount != null}" class="container-fluid center-Container" id="editor">
+        <div class="row">
+            <ol id="breadcrumb" class="breadcrumb">
+                <li><a href="/">Units</a></li>
+                <li><a th:href="@{unit(unitId=${page.getUnitId()})}">Units</a></li>
+                <li><a th:href="@{lecture(unitId=${page.getUnitId()},lectureId=${page.getLectureId()},slideId=${page.getSlideId()})}">Notes</a></li>
+                <li th:if="${note.title == null}"><a  th:href="@{note(noteId=${note.getParentId()})}">Replies</a></li>
+                <li class="active">Edit</li>
+            </ol>
+        </div>
+        <div class="row top-part">
+            <div class="col-lg-12 col-md-12 col-xs-12">
+                <h3><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&ensp;Create Notes</h3>
+            </div>
+        </div>
+        <hr>
+
+        <!--    Simditor    -->
+        <!--/*@thymesVar id="note" type="org.zhaoyangli.ravenote.model.Note"*/-->
+        <form id="noteForm" th:action="@{/submit/edit}" th:object="${note}" method="post">
+            <div th:if="${note.getTitle()!=null}" class="form-group">
+                <label for="inputTitle">Title</label>
+                <input type="text" class="form-control" id="inputTitle" name="title" th:value="${note.getTitle()}" placeholder="Title (required)">
+            </div>
+            <div class="form-group">
+                <label for="inputContent">Content</label>
+                <textarea id="inputContent" name="content" placeholder="Write your notes here.." autofocus>
+                </textarea>
+            </div>
+            <input type="hidden" th:value="${note.getId()}" id="noteId" name="id">
+            <input type="hidden" th:value="${note.getPageId()}" id="notePageId" name="pageId">
+            <input type="hidden" th:value="${session.userAccount.getUsername()}" id="noteUsername" name="username">
+            <input type="hidden" th:value="${note.getGmtCreate()}" id="noteGmtCreate" name="gmtCreate">
+            <input type="hidden" th:value="${note.getMark()}" id="noteMark" name="mark">
+            <input type="hidden" th:value="${note.getParentId()}" id="noteParentId" name="parentId">
+            <button id="submitButton" type="submit" class="btn btn-success" onclick="alert('Submit Successfully!')">Submit</button>
+        </form>
+        <hr>
+    </div>
+
+    <!--  Simditor Initialisation  -->
+    <th:block th:insert="~{fragments :: sdInit}"></th:block>
+
+    <!-- common foot block   -->
+    <th:block th:insert="~{fragments :: footLong}"></th:block>
+
+    <script type="application/javascript" src="js/custom/edit.js"></script>
+
+</body>
+</html>

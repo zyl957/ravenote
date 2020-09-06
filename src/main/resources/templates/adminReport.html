@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/custom/adminReport.css">
+    <title>Admin Report Iframe</title>
+</head>
+<body>
+<div>
+    <h4>Report list</h4>
+</div>
+<div>
+    <table>
+        <tr>
+            <th>Reporter</th>
+            <th>Note ID</th>
+            <th>Url</th>
+            <th>Note number</th>
+            <th>Content</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="report : ${reports}">
+            <td th:utext="${report.getUsername()}">Reporter</td>
+            <td th:utext="${report.getNoteId()}">Note ID</td>
+            <td> <a th:href= "@{${report.getPageUrl()}}" th:utext="link"></a></td>
+            <td th:utext="${report.getNoteNumber()}">Note number</td>
+            <td th:utext="${report.getContent()}">Content</td>
+            <td>
+                <a th:href="@{/admin/report/remove(reportId=${report.getId()})}">Remove</a></span>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

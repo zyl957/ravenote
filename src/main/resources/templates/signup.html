@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RaveNote - Sign Up</title>
+
+    <th:block th:insert="~{fragments :: head}"></th:block>
+
+    <link rel="stylesheet" href="/css/custom/lecture.css">
+    <link rel="stylesheet" href="/css/custom/captcha.css">
+    <script src="/js/custom/signup.js"></script>
+</head>
+<body>
+    <div class="container-fluid center-Container">
+        <div class="row top-part">
+            <div class="col-lg-12 col-md-12 col-xs-12">
+                <div class="topList">
+                    <span class="listTitle"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span><span>&ensp;User Sign Up</span></span>
+                    <span><a href="/signin" class="btn btn-primary pull-right">Go back</a></span>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row" id="userAccountArea" style="margin-left: 15px">
+            <form id="signUpForm" th:action="@{/signup}" style="font-size: 15px;" method="post">
+                <div>
+                    <div>
+                        <span><label for="username"><span th:utext="'<b>Username:</b> '"></span></label></span>
+                        <span><input id="username" class="inputs" name="username" placeholder="Username" required></span>
+                        <span id="username-warning" style="display: none; font-size: 12px; color: red; padding-left: 10px;">Username incorrect.</span>
+                        <span id="username-pass" style="display: none; font-size: 12px; color: lawngreen; padding-left: 10px;" class="glyphicon glyphicon-ok"></span>
+                    </div>
+                    <div>
+                        <span id="username-hint" style="font-size: 12px; color: #8c8c8c; display: none"> Only the combination of letters and numbers is allowed. </span>
+                    </div>
+                </div>
+                <br>
+                <div>
+                    <div>
+                        <span><label for="password"><span th:utext="'<b>Password:</b> '"></span></label></span>
+                        <span><input id="password" class="inputs" name="password" type="password" placeholder="Password"></span>
+                        <span id="password-warning" style="display: none; font-size: 12px; color: red; padding-left: 10px;">Password incorrect.</span>
+                        <span id="password-pass" style="display: none; font-size: 12px; color: lawngreen; padding-left: 10px;" class="glyphicon glyphicon-ok"></span>
+                    </div>
+                    <div>
+                        <span id="password-hint" style="font-size: 12px; color: #8c8c8c; display: none"> 6-16 characters, case sensitive. </span>
+                    </div>
+                </div>
+                <br>
+                <div>
+                    <div>
+                        <span><label for="passwordConfirmation"><span th:utext="'<b>Confirm  :</b>  '"></span></label></span>
+                        <span><input id="passwordConfirmation" class="inputs" name="passwordConfirmation" type="password" placeholder="Confirm password"></span>
+                        <span id="confirm-warning" style="display: none; font-size: 12px; color: red; padding-left: 10px;">Password doesn't match.</span>
+                        <span id="confirm-pass" style="display: none; font-size: 12px; color: lawngreen; padding-left: 10px;" class="glyphicon glyphicon-ok"></span>
+                    </div>
+                </div>
+                <br>
+                <div class="drag">
+                    <div class="bg"></div>
+                    <div class="text" onselectstart="return false;">Is a robot doing this?...</div>
+                    <div class="d-btn">&gt;&gt;</div>
+                </div>
+                <br>
+                <div>
+                    <span>
+                        <a id="submitUa" class="btn btn-success">Submit</a>
+                    </span>
+                    <span id="submit-warning" style="display: none; font-size: 12px; color: red; padding-left: 10px;"> Incorrect inputs.</span>
+                </div>
+                <br>
+            </form>
+            <br>
+        </div>
+        <div class="row" id="userProfileArea" style="display: none">
+            <form action="#" style="display: none">
+                <div>
+                    <span><label for="username2"><span th:utext="'<b>Username:</b> '"></span></label></span>
+                    <span th:text="' '"></span>
+                    <span><input type="hidden" id="username2" name="username"></span>
+                </div>
+                <br>
+                <div>
+                    <span><label for="userPos"><span th:utext="'<b>Position:</b> '"></span></label></span>
+                    <span><input type="text" id="userPos" name="position" placeholder="student/teacher" required></span>
+                </div>
+                <br>
+                <div>
+                    <span><label for="userFName"><span th:utext="'<b>First name:</b> '"></span></label></span>
+                    <span><input type="text" id="userFName" name="firstName" placeholder="First name" required></span>
+                </div>
+                <br>
+                <div>
+                    <span><label for="userLName"><span th:utext="'<b>Last name:</b> '"></span></label></span>
+                    <span><input type="text" id="userLName" name="lastName" placeholder="Last name" required></span>
+                </div>
+                <br>
+                <div>
+                    <span><label for="userEmail"><span th:utext="'<b>Email:</b> '"></span></label></span>
+                    <span><input type="text" id="userEmail" name="email" placeholder="Email" required></span>
+                </div>
+                <br>
+                <div>
+                    <span><label for="userDepartment"><span th:utext="'<b>Department:</b> '"></span></label></span>
+                    <span><input type="text" id="userDepartment" name="department" placeholder="Department" required></span>
+                </div>
+                <br>
+                <div>
+                    <span><label for="userCourse"><span th:utext="'<b>Course:</b> '"></span></label></span>
+                    <span><input type="text" id="userCourse" name="course" placeholder="Course (E.g. MSc Computer Science)" required></span>
+                </div>
+                <br>
+                <div>
+                    <span><label for="userLevel"><span th:utext="'<b>Level:</b> '"></span></label></span>
+                    <span><input type="text" id="userLevel" name="level" placeholder="Current level (E.g. Master/Bachelor)" required></span>
+                </div>
+                <br>
+                <div>
+                    <button type="submit" class="btn btn-success" onclick="return confirm('Are you sure you want to save these changes?')">Submit</button>
+                </div>
+                <br>
+            </form>
+        </div>
+    </div>
+
+    <!-- common foot block   -->
+    <th:block th:insert="~{fragments :: footShort}"></th:block>
+
+</body>
+</html>

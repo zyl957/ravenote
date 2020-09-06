@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <th:block th:insert="~{fragments :: head}"></th:block>
+    <link rel="stylesheet" href="css/custom/home.css">
+    <title> RaveNote - Home Page </title>
+</head>
+<body>
+    <div th:replace="fragments::nav"></div>
+
+    <div th:if="${session.userAccount == null}">
+        <img src="/image/logo.jpg" alt="RaveNote" class="logo-big">
+    </div>
+
+    <div th:if="${session.userAccount != null}" class="container-fluid center-Container">
+        <div class="row">
+            <div>
+                <ol id="breadcrumb" class="breadcrumb">
+                    <li class="active">Units</li>
+                </ol>
+            </div>
+        </div>
+        <div class="row top-part">
+            <div class="col-lg-12 col-md-12 col-xs-12">
+                <h3><span class="glyphicon glyphicon-education" aria-hidden="true"></span>&ensp;Units</h3>
+            </div>
+        </div>
+        <hr>
+        <div class="main-display" th:each="unit : ${units}">
+            <div>
+                <h4 class="unitId-display">
+                    <a th:href="@{'/unit?unitId='+${unit.getUnitId()}}" th:text="${unit.getUnitId()}"></a>
+                </h4>
+            </div>
+            <div>
+                <p th:text="${unit.getUnitName()}"></p>
+            </div>
+            <hr>
+        </div>
+    </div>
+
+    <!-- common foot block   -->
+    <th:block th:insert="~{fragments :: footShort}"></th:block>
+
+</body>
+</html>

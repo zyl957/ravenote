@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+
+    <th:block th:insert="~{fragments :: head}"></th:block>
+
+    <link rel="stylesheet" href="css/custom/profile.css">
+    <link rel="stylesheet" href="css/custom/lecture.css">
+
+    <script type="application/javascript" src="js/custom/profile.js"></script>
+
+    <title> RaveNote - User Profile </title>
+</head>
+<body>
+    <!-- Navigation bar -->
+    <div th:replace="fragments::nav"></div>
+
+    <!-- Profile Display -->
+    <div th:if="${session.userAccount != null}" class="container-fluid center-Container" id="profileA">
+        <div class="row top-part">
+            <div class="col-lg-12 col-md-12 col-xs-12">
+                <div class="topList">
+                    <span class="listTitle"><span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span><span>&ensp;User Profile</span></span>
+                    <span th:if="${session.userAccount.getUsername().equals(user.getUsername())}"><button class="btn btn-primary pull-right" id="profileEditButton">Edit</button></span>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="main-display">
+            <div>
+                <span th:utext="'<b>Username:</b> '"></span><span th:text="${user.getUsername()}"></span>
+            </div>
+            <br>
+            <div>
+                <span th:utext="'<b>Position:</b> '"></span><span th:text="${user.getPosition()}"></span>
+            </div>
+            <br>
+            <div>
+            <span th:utext="'<b>First name:</b> '"></span><span th:text="${user.getFirstName()}"></span>
+            </div>
+            <br>
+            <div>
+                <span th:utext="'<b>Last name:</b> '"></span><span th:text="${user.getLastName()}"></span>
+            </div>
+            <br>
+            <div>
+                <span th:utext="'<b>Email:</b> '"></span><span th:text="${user.getEmail()}"></span>
+            </div>
+            <br>
+            <div>
+                <span th:utext="'<b>Department:</b> '"></span><span th:text="${user.getDepartment()}"></span>
+            </div>
+            <br>
+            <div>
+                <span th:utext="'<b>Course:</b> '"></span><span th:text="${user.getCourse()}"></span>
+            </div>
+            <br>
+            <div>
+                <span th:utext="'<b>Level:</b> '"></span><span th:text="${user.getLevel()}"></span>
+            </div>
+            <br>
+        </div>
+    </div>
+
+    <!-- Profile form for editing, visibility controlled by jQuery button -->
+    <div th:if="${session.userAccount != null}" class="container-fluid center-Container" id="profileB" style="display: none">
+        <div class="row top-part">
+            <div class="col-lg-12 col-md-12 col-xs-12">
+                <div class="topList">
+                    <span class="listTitle"><span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span><span>&ensp;User Profile</span></span>
+                    <span><button class="btn btn-primary pull-right" id="profileGoBackButton">Go back</button></span>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="main-display">
+            <form id="profileForm" th:action="@{/profile}" th:object="${user}" method="post">
+                <div>
+                    <span><label for="username"><span th:utext="'<b>Username:</b> '"></span></label></span>
+                    <span th:text="${user.getUsername()}"></span>
+                    <span><input type="hidden" id="username" name="username" th:value="${user.getUsername()}"></span>
+                </div>
+                <br>
+                <div>
+                    <span><label for="userPos"><span th:utext="'<b>Position:</b> '"></span></label></span>
+                    <span><input type="text" id="userPos" name="position" th:value="${user.getPosition()}" ></span>
+                </div>
+                <br>
+                <div>
+                    <span><label for="userFName"><span th:utext="'<b>First name:</b> '"></span></label></span>
+                    <span><input type="text" id="userFName" name="firstName" th:value="${user.getFirstName()}" ></span>
+                </div>
+                <br>
+                <div>
+                    <span><label for="userLName"><span th:utext="'<b>Last name:</b> '"></span></label></span>
+                    <span><input type="text" id="userLName" name="lastName" th:value="${user.getLastName()}" ></span>
+                </div>
+                <br>
+                <div>
+                    <span><label for="userEmail"><span th:utext="'<b>Email:</b> '"></span></label></span>
+                    <span><input type="text" id="userEmail" name="email" th:value="${user.getEmail()}" ></span>
+                </div>
+                <br>
+                <div>
+                    <span><label for="userDepartment"><span th:utext="'<b>Department:</b> '"></span></label></span>
+                    <span><input type="text" id="userDepartment" name="department" th:value="${user.getDepartment()}" ></span>
+                </div>
+                <br>
+                <div>
+                    <span><label for="userCourse"><span th:utext="'<b>Course:</b> '"></span></label></span>
+                    <span><input type="text" id="userCourse" name="course" th:value="${user.getCourse()}" ></span>
+                </div>
+                <br>
+                <div>
+                    <span><label for="userLevel"><span th:utext="'<b>Level:</b> '"></span></label></span>
+                    <span><input type="text" id="userLevel" name="level" th:value="${user.getLevel()}" ></span>
+                </div>
+                <br>
+                <div>
+                    <button type="submit" class="btn btn-success" onclick="return confirm('Are you sure you want to save these changes?')">Submit</button>
+                </div>
+                <br>
+            </form>
+        </div>
+    </div>
+
+    <!-- common foot block   -->
+    <th:block th:insert="~{fragments :: footShort}"></th:block>
+
+</body>
+</html>

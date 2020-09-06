@@ -1,0 +1,77 @@
+.slide {
+    margin: 0 auto auto auto;
+    max-height: 60%;
+    max-width: 60%;
+    height: auto;
+    border-color: #0f0f0f;
+    border-width: 1px;
+}
+.infoTitle{
+    padding-left: 15px;
+}
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#editor{
+    display: none;
+}
+
+.mainNote{
+    margin: 5px 20px 20px;
+    border-radius: 25px;
+    border: 2px solid #f7ecb5;
+    padding: 10px 30px;
+}
+
+.noteTop{
+    padding-bottom: 16px;
+}
+
+.noteTitle{
+    font-weight: bold;
+    font-size: x-large;
+    margin-right: 1em;
+}
+
+.noteHr{
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+.noteStatic{
+    margin-top: 30px;
+}
+
+.staticCommon{
+    margin-right: 1em;
+}
+
+.staticManage{
+    float: right;
+}
+
+.manageLink{
+    margin: 0 10px;
+}
+
+.noteAuthor{
+    font-size: small;
+}
+
+.infoCommon{
+    padding-right: 2em;
+}
+
+#noteForm{
+    margin-bottom: 20px;
+}
+
+.emptyWarning{
+    margin: 10px 20px;
+    font-weight: bold;
+}

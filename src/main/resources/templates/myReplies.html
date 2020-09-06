@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <!-- common head block   -->
+    <th:block th:insert="~{fragments :: head}"></th:block>
+
+    <link rel="stylesheet" href="css/custom/my.css">
+    <script type="application/javascript" src="/js/custom/lecture.js"></script>
+
+    <title>RaveNote - My Replies</title>
+
+</head>
+<body>
+
+<!-- Navigation bar -->
+<div th:replace="fragments::nav"></div>
+
+<div class="container-fluid center-Container">
+    <div class="row top-part">
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="topList">
+                <span class="listTitle"><span class="glyphicon glyphicon glyphicon-copy" aria-hidden="true"></span><span>&ensp;My Replies</span></span>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="mainNote" th:id="${myReplyDTOStat.count*1000}" th:each=" myReplyDTO : ${myReplyDTOS}">
+            <div class="nBody">
+                <div>
+                    <span th:utext="'<b>Note Title: </b>'"></span>
+                    <span><a th:href="@{/note(noteId=${myReplyDTO.getParentId()})}" th:utext="${myReplyDTO.getParentTitle()}">Parent Title</a></span>
+                </div>
+                <div class="replyContent">
+                    <div th:utext="'<b>Content: </b>'"></div>
+                    <div class="content" th:utext="${myReplyDTO.getContent()}">Content</div>
+                </div>
+            </div>
+            <div class="nTime">
+                <div class="noteTime" th:text="'Created at: '+${myReplyDTO.getGmtCreate()}"></div>
+                <div th:if="${myReplyDTO.getGmtCreate()!=myReplyDTO.getGmtModified()}" class="noteTime" th:text="'Modified at: '+${myReplyDTO.getGmtModified()}"></div>
+            </div>
+            <hr>
+        </div>
+        <div class="loadMore" th:align="center">
+                <span>
+                    <button id="loadButton1" type="button" class="btn btn-link" style="display: none">Load more</button>
+                    <button id="loadButton2" type="button" class="btn btn-link" style="display: none">Load more</button>
+                    <button id="loadButton3" type="button" class="btn btn-link" style="display: none">Load more</button>
+                </span>
+            <span style="margin-left: 10px">
+                    <button id="loadAllButton" type="button" class="btn btn-link" style="display: none">Load all</button>
+                </span>
+        </div>
+        <div th:if="${myReplyDTOS.size()==0}" class="emptyWarning" th:utext="'You have not create replies, go to write one!'"></div>
+    </div>
+</div>
+
+    <!-- common foot block   -->
+    <th:block th:insert="~{fragments :: footLong}"></th:block>
+
+</body>
+</html>

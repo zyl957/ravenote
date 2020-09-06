@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <!-- common head block   -->
+    <th:block th:insert="~{fragments :: head}"></th:block>
+
+    <link rel="stylesheet" href="css/custom/notification.css">
+    <script type="application/javascript" src="/js/custom/lecture.js"></script>
+    <script type="application/javascript" src="/js/custom/notification.js"></script>
+
+    <title>RaveNote - Notification</title>
+
+</head>
+<body>
+
+<!-- Navigation bar -->
+<div th:replace="fragments::nav"></div>
+
+<div class="container-fluid center-Container">
+    <div class="row top-part">
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="topList">
+                <span class="listTitle"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span>&ensp;Notifications</span></span>
+                <span><button class="btn btn-primary pull-right" id="readBtn">Mark all as read</button></span>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row" id="notifications">
+        <div class="mainNote" th:id="${notificationStat.count*1000}" th:each="notification : ${notifications}">
+            <div class="nBody">
+                <span  th:if="${notification.getStatus()!=1}" th:utext="'<b>'"></span>
+                <span><a th:href="@{/profile(username=${notification.getSender()})}" th:utext="${notification.getSender()}"></a></span>
+                <span th:utext="' wrote a reply under your note '"></span>
+                <span>
+                    <button class="btn btn-link targetTitle" th:id="${notificationStat.count*1000+1}" th:utext="${notification.getTargetNoteTitle()}"></button>
+                </span>
+                <span>
+                    <input type="hidden" th:if="${notification.getStatus()!=1}" th:id="${notificationStat.count*1000+4}" th:value="'1'">
+                    <input type="hidden" th:id="${notificationStat.count*1000+2}" th:value="${notification.getTargetNoteId()}">
+                    <input type="hidden" th:id="${notificationStat.count*1000+3}" th:value="${notification.getId()}">
+                </span>
+                <span th:if="${notification.getStatus()!=1}" th:utext="'</b>'"></span>
+                <span th:if="${notification.getStatus()!=1}" class="redPoint"></span>
+            </div>
+            <div class="nTime">
+                <span class="noteTime" th:text="''+${notification.getGmtCreate()}"></span>
+            </div>
+            <hr>
+        </div>
+        <div class="loadMore" th:align="center">
+                <span>
+                    <button id="loadButton1" type="button" class="btn btn-link" style="display: none">Load more</button>
+                    <button id="loadButton2" type="button" class="btn btn-link" style="display: none">Load more</button>
+                    <button id="loadButton3" type="button" class="btn btn-link" style="display: none">Load more</button>
+                </span>
+            <span style="margin-left: 10px">
+                    <button id="loadAllButton" type="button" class="btn btn-link" style="display: none">Load all</button>
+                </span>
+        </div>
+        <div th:if="${notifications.size()==0}" class="emptyWarning" th:utext="'There are 0 notifications in this page'"></div>
+    </div>
+</div>
+
+    <!-- common foot block   -->
+    <th:block th:insert="~{fragments :: footLong}"></th:block>
+
+</body>
+</html>

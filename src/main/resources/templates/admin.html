@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" class="x-admin-sm">
+<head>
+    <!-- common head block   -->
+    <th:block th:insert="~{fragments :: head}"></th:block>
+
+    <link rel="stylesheet" href="/css/custom/admin.css">
+    <script type="application/javascript" src="/js/custom/admin.js"></script>
+
+    <title>Administrator</title>
+</head>
+<body class="index">
+<!-- 顶部开始 -->
+<div class="container">
+    <div class="logo">
+        <a href="/admin">Backstage</a></div>
+
+    <ul class="nav navbar-nav navbar-right" >
+        <li><a href="/home">Home</a></li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">admin</a>
+            <ul class="dropdown-menu">
+                <li><a href="/profile?username=admin">My profile</a></li>
+                <li><a href="/fail">Sign out</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<!-- 顶部结束 -->
+<!-- 中部开始 -->
+<!-- 左侧菜单开始 -->
+<div class="left-nav">
+    <div id="side-nav">
+        <ul id="nav" >
+            <li>
+                <button id="reportBtn" type="button" class="btn btn-link">Report&nbsp; Management</button>
+            </li>
+            <li>
+                <button id="courseBtn" type="button" class="btn btn-link">Course Management</button>
+            </li>
+            <li>
+                <button id="userBtn" type="button" class="btn btn-link">Users&nbsp;&nbsp; Management</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+    <div class="page-content">
+        <div>
+            <div id="pages">
+                <iframe src='/admin/welcome' width="100%" height="100%"></iframe>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

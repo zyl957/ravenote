@@ -1,0 +1,14 @@
+.logo-big{
+    text-align: center;
+    background-color: #f5e79e;
+    border-radius: 20px;
+    width: 800px;
+    height: 350px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+

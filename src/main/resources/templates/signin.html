@@ -1,0 +1,44 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.0.1">
+    <title>RaveNote - Sign In</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+
+    <meta name="theme-color" content="#563d7c">
+
+    <!-- Custom styles for this template -->
+    <link href="css/custom/signin.css" rel="stylesheet">
+
+    <script src="/jquery/jquery-3.5.1.min.js"></script>
+    <script type="application/javascript" src="/js/custom/signin.js"></script>
+</head>
+
+<body class="text-center">
+<div id="form-signin" class="form-signin">
+    <img class="mb-4" src="image/crow_a.jpeg" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Welcome To RaveNote!</h1>
+    <label for="inputUsername" class="sr-only">Username</label>
+    <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Username" required autofocus>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+    <div id="alert" style="display: none; font-size: 12px; color: red;"></div>
+    <br>
+    <button id="sub" class="btn btn-lg btn-primary">&emsp;&emsp;&emsp;&emsp;Sign in&emsp;&emsp;&emsp;&emsp;</button>
+    <br>
+    <br>
+    <a th:href="@{/signup}">
+        <button type="button" class="btn btn-lg btn-default">&thinsp;New user? Sign up here&thinsp;</button>
+    </a>
+</div>
+
+</body>
+</html>

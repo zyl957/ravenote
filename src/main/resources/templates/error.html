@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <!-- common head block   -->
+    <th:block th:insert="~{fragments :: head}"></th:block>
+
+    <title>RaveNote - Error</title>
+</head>
+<body>
+
+<!-- Navigation bar -->
+<div th:replace="fragments::nav"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="jumbotron">
+            <h1>Oops, an error has occurred!</h1>
+            <br>
+            <p th:utext="${message}">l</p>
+            <br>
+            <p><a class="btn btn-primary btn-lg" th:href="@{/home}" role="button">Go to homepage</a></p>
+        </div>
+    </div>
+</div>
+
+    <!-- common foot block   -->
+    <th:block th:insert="~{fragments :: footShort}"></th:block>
+</body>
+</html>
