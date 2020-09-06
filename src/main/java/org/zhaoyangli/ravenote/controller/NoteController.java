@@ -43,7 +43,7 @@ public class NoteController {
         model.addAttribute("page",page);
         model.addAttribute("note",note);
         model.addAttribute("replies",replies);
-        return "/note";
+        return "note";
     }
 
     @RequestMapping("/edit")

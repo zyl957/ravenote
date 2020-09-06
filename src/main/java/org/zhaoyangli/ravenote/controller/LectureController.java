@@ -35,6 +35,6 @@ public class LectureController {
         LectureDTO lectureDTO = lectureService.getLectureDTO(unitId,lectureId);
         model.addAttribute("lectureDTO",lectureDTO);
         model.addAttribute("slideId", slideId);
-        return "/lecture";
+        return "lecture";
     }
 }

@@ -33,6 +33,6 @@ public class UnitController {
         List<Lecture> lectures = lectureService.getLecturesByUnitId(unitId);     //get all of the lectures this unit has
         model.addAttribute("unitId",unitId);
         model.addAttribute("lectures",lectures);
-        return "/unit";
+        return "unit";
     }
 }
