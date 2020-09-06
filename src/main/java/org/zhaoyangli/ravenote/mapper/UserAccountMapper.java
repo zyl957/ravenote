@@ -26,7 +26,7 @@ public interface UserAccountMapper {
     @Select("SELECT * FROM useraccount WHERE token=#{token}")
     UserAccount getUserAccountByToken(@Param("token") String token);
 
-    @Select("SELECT password FROM useraccount WHERE username=#{username}")
+    @Select("SELECT * FROM useraccount WHERE username=#{username}")
     UserAccount getUserAccountByUsername(@Param("username") String username);
 
     @Select("SELECT username FROM useraccount")

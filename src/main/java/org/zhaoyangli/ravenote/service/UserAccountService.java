@@ -34,4 +34,8 @@ public class UserAccountService {
     public void insertNewAccount(UserAccount userAccount) {
         userAccountMapper.insertNewAccount(userAccount);
     }
+
+    public UserAccount getUserAccountByUsername(String inputUsername) {
+        return userAccountMapper.getUserAccountByUsername(inputUsername);
+    }
 }

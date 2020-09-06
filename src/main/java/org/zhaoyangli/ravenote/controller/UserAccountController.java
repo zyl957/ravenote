@@ -37,15 +37,18 @@ public class UserAccountController {
             String inputUsername = signInDTO.getUsername();
             String inputPassword = signInDTO.getPassword();
             //retrieve password in the database
-            String password = userAccountService.getPasswordByUsername(inputUsername);
-            if (password==null){
+            UserAccount userAccount = userAccountService.getUserAccountByUsername(inputUsername);
+            if (userAccount.getPassword()==null){
                 return new ExceptionJsonObj(CustomErrorCodeEnum.WRONG_USERNAME_OR_PASSWORD);
             }
-            if(password.equals(inputPassword)){
+            if(userAccount.getPassword().equals(inputPassword)){
+                if (!inputUsername.equals(userAccount.getUsername())){
+                    return new ExceptionJsonObj(CustomErrorCodeEnum.WRONG_USERNAME_OR_PASSWORD);
+                }
                 String token = UUID.randomUUID().toString();
                 userAccountService.updateCookie(token,inputUsername); //create and store a token in the database for quick sign-in via cookie
                 Date date = new Date();
-                UserAccount ua = new UserAccount(inputUsername,password,token,date,date);
+                UserAccount ua = new UserAccount(userAccount.getUsername(),userAccount.getPassword(),token,date,date);
                 request.getSession().setAttribute("userAccount",ua);
 
                 //cookie generation
