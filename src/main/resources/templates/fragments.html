@@ -28,14 +28,14 @@
     <th:block th:fragment="sdInit">
         <script type="text/javascript">
             $(function(){
-                let $username = $("#sessU").val();
+                let $username = $("#noteUsername").val();
                 Simditor.locale = 'en-US';
                 new Simditor({
                     textarea: $('#inputContent'),
                     toolbar: [
                         'title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', 'mark',
-                        '|','alignment', 'checklist', 'ol', 'ul',  'code', 'table', 'blockquote',
-                        '|', 'link',  'image', 'hr',
+                        '|','alignment', 'checklist', 'ol', 'ul',  'code', 'table',
+                        '|', 'blockquote','link', 'hr',
                         '|','fullscreen'
                     ],
                     placeholder:'Write your notes here...',
