@@ -53,7 +53,7 @@ public class UserAccountController {
 
                 //cookie generation
                 Cookie cookie = new Cookie("token",token);
-                cookie.setMaxAge(4*60*60);   //life: 4 hours
+                cookie.setMaxAge(24*60*60);   //life: 1 day
                 cookie.setDomain("localhost");
                 cookie.setPath("/");
                 response.addCookie(cookie);

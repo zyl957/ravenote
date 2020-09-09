@@ -10,7 +10,7 @@ $(function (){
                 "password" : $("#inputPassword").val()
             }),
             success: function (response) {
-                if (response.code === 1000) {
+                if (response.code === 1000) {   //if success
                     window.location.replace("/home");
                 }
                 else {
@@ -18,7 +18,7 @@ $(function (){
                     let $alert  = $("#alert");
                     $alert.empty();
                     $alert.append(response.message) ;
-                    $alert.show();
+                    $alert.show();  //print error message in the alert box
                 }
             },
             error : function() {

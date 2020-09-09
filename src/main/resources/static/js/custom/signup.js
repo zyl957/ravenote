@@ -11,10 +11,10 @@ $(function (){
     let input4 = false;
 
     let box = $(".drag");
-    let bg = $(".bg");//背景
-    let text = $(".text");//文字
-    let dBtn = $(".d-btn");//滑块
-    let distance = box.width() - dBtn.width();//滑动成功的宽度（距离）
+    let bg = $(".bg");//background
+    let text = $(".text");//inner text
+    let dBtn = $(".d-btn");//slide block
+    let distance = box.width() - dBtn.width();//total distance
 
     dBtn.on("mousedown",function(event){
 
@@ -30,47 +30,47 @@ $(function (){
             let offsetX = moveX - downX;
 
             if( offsetX > distance){
-                offsetX = distance;//如果滑过了终点，就将它停留在终点位置
+                offsetX = distance;//make the block stay at the destination when the mouse passes it
             }else if( offsetX < 0){
-                offsetX = 0;//如果滑到了起点的左侧，就将它重置为起点位置
+                offsetX = 0;//move the block to the start if the user tries to pull it out of the left end
             }
 
-            //4.根据鼠标移动的距离来动态设置滑块的偏移量和背景颜色的宽度
+            //auto-setting the background color and the offset based on the mouse route
 
             dBtn.attr("style","left:"+ offsetX +"px;");
             bg.attr("style","width:"+offsetX+"px;");
 
-            //如果鼠标的水平移动距离 = 滑动成功的宽度
+
             if( offsetX === distance){
 
-                //1.设置滑动成功后的样式
+                //setting the status of success
                 text.text("Of course not!")
                     .attr("style","background-color:lightgreen;color:#ffffff;");
                 dBtn.attr("style","display:none;");
 
 
-                //2.设置滑动成功后的状态
+                //setting the status after the success
                 input4 = true;
-                //成功后，清除掉鼠标按下事件和移动事件（因为移动时并不会涉及到鼠标松开事件）
+                //clear the mouse event
                 dBtn.on("mousedown",function (){});
                 document.onmousemove = null;
 
             }
 
-            //四、给文档注册鼠标松开事件
+            //add listener for mouse up
             document.onmouseup = function(e){
 
-                //如果鼠标松开时，滑到了终点，则验证通过
+                //if the block is at the destination when the mouse is up, success
                 if(input4){
                     return;
                 }else{
-                    //反之，则将滑块复位（设置了1s的属性过渡效果）
+                    //else reset the block (with an 1s delay)
                     dBtn.attr("style","left:0;");
                     bg.attr("style","width:0;");
                     dBtn.attr("style","transition:left 1s ease;");
                     bg.attr("style","transition:width 1s ease;");
                 }
-                //只要鼠标松开了，说明此时不需要拖动滑块了，那么就清除鼠标移动和松开事件。
+                //anyway clear the listener events
                 document.onmousemove = null;
                 document.onmouseup = null;
             }
@@ -79,20 +79,20 @@ $(function (){
     });
 
     $username.click(function (){
-        $("#username-hint").show();
+        $("#username-hint").show(); //hints will show when user click related input boxes
     })
-    $username.blur(function (){
+    $username.blur(function (){ //triggers when the input box loses the focus
         $("#username-hint").hide();
         $.ajax({
             type: "POST",
             dataType: "json",
             data:{username : $username.val()},
-            url: "/signup/username_check" ,
+            url: "/signup/username_check" , // check if there is already a same name in the database
             success: function (response){
                 if(response.code === 1000){
                     $("#username-warning").hide();
                     $("#username-pass").show();
-                    input1 = true;
+                    input1 = true;  //passes the limitation
                 }
                 else{
                     $("#username-pass").hide();
@@ -117,7 +117,7 @@ $(function (){
             type: "POST",
             dataType: "json",
             data:{password : $password.val()},
-            url: "/signup/password_check" ,
+            url: "/signup/password_check" , //check the length of the password
             success: function (response){
                 if(response.code === 1000){
                     $("#password-warning").hide();
@@ -131,7 +131,7 @@ $(function (){
                         .text(response.message);
                     input2 = false;
                 }
-                if ($confirm.val()!==$password.val()){
+                if ($confirm.val()!==$password.val()){  //the confirm box needs to be check again in case user fills in it before the password box
                     $("#confirm-warning").show();
                     $("#confirm-pass").hide();
                     input3 = false;
@@ -156,6 +156,7 @@ $(function (){
         }
     })
 
+    //when clicking the submit button, check all four variables, if all true, pass
     $submitBtn1.on("click", function (){
         let conf = confirm("Are you sure you want to submit?");
         if (!conf){

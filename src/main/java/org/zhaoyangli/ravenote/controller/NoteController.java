@@ -55,7 +55,7 @@ public class NoteController {
         Page page = pageService.getPageById(note.getPageId());
         model.addAttribute("page",page);
         model.addAttribute("note", note);
-        return "/edit";
+        return "edit";
     }
 
     @RequestMapping("/delete")
