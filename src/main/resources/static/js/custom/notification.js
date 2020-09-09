@@ -25,7 +25,6 @@ $(function (){
             });
         }
         else{
-            alert("124124")
             window.location.replace("/note?noteId="+targetId);
         }
 

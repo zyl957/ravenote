@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  * This part of the code is referenced from others.
  * REFERENCE:
  * Author: Jiang Ma
- * url: http://www.majiang.life/project/
+ * url: http://www.majiang.life/project/majiangbiji
  */
 
 @Controller
