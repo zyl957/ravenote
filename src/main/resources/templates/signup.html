@@ -31,7 +31,7 @@
                         <span id="username-pass" style="display: none; font-size: 12px; color: lawngreen; padding-left: 10px;" class="glyphicon glyphicon-ok"></span>
                     </div>
                     <div>
-                        <span id="username-hint" style="font-size: 12px; color: #8c8c8c; display: none"> Only the combination of letters and numbers is allowed. </span>
+                        <span id="username-hint" style="font-size: 12px; color: #8c8c8c; display: none"> Only the combination of letters and numbers is allowed. Not case sensitive.</span>
                     </div>
                 </div>
                 <br>
@@ -71,55 +71,6 @@
                 <br>
             </form>
             <br>
-        </div>
-        <div class="row" id="userProfileArea" style="display: none">
-            <form action="#" style="display: none">
-                <div>
-                    <span><label for="username2"><span th:utext="'<b>Username:</b> '"></span></label></span>
-                    <span th:text="' '"></span>
-                    <span><input type="hidden" id="username2" name="username"></span>
-                </div>
-                <br>
-                <div>
-                    <span><label for="userPos"><span th:utext="'<b>Position:</b> '"></span></label></span>
-                    <span><input type="text" id="userPos" name="position" placeholder="student/teacher" required></span>
-                </div>
-                <br>
-                <div>
-                    <span><label for="userFName"><span th:utext="'<b>First name:</b> '"></span></label></span>
-                    <span><input type="text" id="userFName" name="firstName" placeholder="First name" required></span>
-                </div>
-                <br>
-                <div>
-                    <span><label for="userLName"><span th:utext="'<b>Last name:</b> '"></span></label></span>
-                    <span><input type="text" id="userLName" name="lastName" placeholder="Last name" required></span>
-                </div>
-                <br>
-                <div>
-                    <span><label for="userEmail"><span th:utext="'<b>Email:</b> '"></span></label></span>
-                    <span><input type="text" id="userEmail" name="email" placeholder="Email" required></span>
-                </div>
-                <br>
-                <div>
-                    <span><label for="userDepartment"><span th:utext="'<b>Department:</b> '"></span></label></span>
-                    <span><input type="text" id="userDepartment" name="department" placeholder="Department" required></span>
-                </div>
-                <br>
-                <div>
-                    <span><label for="userCourse"><span th:utext="'<b>Course:</b> '"></span></label></span>
-                    <span><input type="text" id="userCourse" name="course" placeholder="Course (E.g. MSc Computer Science)" required></span>
-                </div>
-                <br>
-                <div>
-                    <span><label for="userLevel"><span th:utext="'<b>Level:</b> '"></span></label></span>
-                    <span><input type="text" id="userLevel" name="level" placeholder="Current level (E.g. Master/Bachelor)" required></span>
-                </div>
-                <br>
-                <div>
-                    <button type="submit" class="btn btn-success" onclick="return confirm('Are you sure you want to save these changes?')">Submit</button>
-                </div>
-                <br>
-            </form>
         </div>
     </div>
 

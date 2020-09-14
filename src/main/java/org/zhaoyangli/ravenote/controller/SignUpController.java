@@ -64,16 +64,17 @@ public class SignUpController {
     @ResponseBody
     @PostMapping(value = "/signup/username_check",produces = "application/json")
     public ExceptionJsonObj usernameCheck(@RequestParam("username") String username){
-        Pattern pattern = Pattern.compile("[^a-zA-Z0-9]");
+        Pattern pattern = Pattern.compile("[^a-zA-Z0-9]");  // a pattern that contains characters other than numbers and letters
         Matcher matcher = pattern.matcher(username);
-        if (matcher.find()){
+        if (matcher.find()){    // if matcher matched invalid characters
             return new ExceptionJsonObj(CustomErrorCodeEnum.INVALID_CHARACTERS);
         }
         if (username.length()<5 || username.length()>10){
             return new ExceptionJsonObj(CustomErrorCodeEnum.INVALID_USERNAME_LENGTH);
         }
         List<String> names = userAccountService.getUsernames();
-        if (names.contains(username)){
+        String lowerUsername = username.toLowerCase();  //because the database is not case sensitive, so process it to avoid duplicates
+        if (names.contains(lowerUsername)){
             return new ExceptionJsonObj(CustomErrorCodeEnum.DUPLICATE_USERNAME);
         }
 
