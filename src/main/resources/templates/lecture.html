@@ -135,7 +135,8 @@
         </div>
         <hr>
         <div class="row">
-            <div class="mainNote" th:id="${(noteStat.count)*1000}" th:if="${note.getParentId()==0 && ( ((note.getUsername()!=session.userAccount.getUsername()) && note.getVisibility()==1) || note.getUsername() == session.userAccount.getUsername() )}" th:each="note : ${lectureDTO.getPageDTOS()[slideId].getNotes()}">
+            <!-- th:if makes the page displays notes which are not replies, and: 1. all notes if current user is admin; 2. all of notes that created by the current user and the notes that were not hidden by their author   -->
+            <div class="mainNote" th:id="${(noteStat.count)*1000}" th:if="${note.getParentId()==0 && ( ((note.getUsername()!=session.userAccount.getUsername()) && note.getVisibility()==1) || note.getUsername() == session.userAccount.getUsername() || session.userAccount.getUsername().equals('admin'))}" th:each="note : ${lectureDTO.getPageDTOS()[slideId].getNotes()}">
                 <div class="noteTop">
                     <span class="noteTitle" th:utext="${note.getTitle()}"></span>
                     <span th:if="${note.getVisibility() == 0}" style="color: #8c8c8c">(hidden)</span>
