@@ -21,7 +21,7 @@ public class Note {
 
     private Date gmtModified;
 
-    private int mark;
+    private int visibility;
 
     private int parentId;
 

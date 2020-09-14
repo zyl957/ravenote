@@ -4,13 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.zhaoyangli.ravenote.DTO.CollectionDTO;
+import org.zhaoyangli.ravenote.DTO.HideShowDTO;
 import org.zhaoyangli.ravenote.exception.CustomErrorCodeEnum;
 import org.zhaoyangli.ravenote.exception.ExceptionJsonObj;
 import org.zhaoyangli.ravenote.model.*;
-import org.zhaoyangli.ravenote.service.CollectionService;
-import org.zhaoyangli.ravenote.service.NoteService;
-import org.zhaoyangli.ravenote.service.PageService;
-import org.zhaoyangli.ravenote.service.ReportService;
+import org.zhaoyangli.ravenote.service.*;
+import org.zhaoyangli.ravenote.tools.UserAccountTool;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -72,6 +71,16 @@ public class NoteController {
             return "redirect:/note?noteId="+note.getParentId();
         }
     }
+
+    @ResponseBody
+    @PostMapping(value = "/hideShow", consumes = "application/json",produces = "application/json")
+    public ExceptionJsonObj hideShowNote(@RequestBody HideShowDTO hideShowDTO){
+
+        noteService.updateVisibility(hideShowDTO);
+        return new ExceptionJsonObj(CustomErrorCodeEnum.OPERATION_SUCCESS);
+
+    }
+
 
     @ResponseBody
     @PostMapping(value = "/collection/operation", consumes = "application/json",produces = "application/json")

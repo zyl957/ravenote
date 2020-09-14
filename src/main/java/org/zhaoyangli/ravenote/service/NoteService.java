@@ -2,6 +2,7 @@ package org.zhaoyangli.ravenote.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.zhaoyangli.ravenote.DTO.HideShowDTO;
 import org.zhaoyangli.ravenote.exception.CustomErrorCodeEnum;
 import org.zhaoyangli.ravenote.exception.CustomException;
 import org.zhaoyangli.ravenote.mapper.NoteMapper;
@@ -71,5 +72,9 @@ public class NoteService {
 
     public void updateReply(Note note) {
         noteMapper.updateReply(note);
+    }
+
+    public void updateVisibility(HideShowDTO hideShowDTO) {
+        noteMapper.updateVisibility(hideShowDTO.getNoteId(),hideShowDTO.getVisibility());
     }
 }

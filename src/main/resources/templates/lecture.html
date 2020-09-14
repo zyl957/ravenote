@@ -135,9 +135,10 @@
         </div>
         <hr>
         <div class="row">
-            <div class="mainNote" th:id="${(noteStat.count)*1000}" th:if="${note.getParentId()==0}" th:each="note : ${lectureDTO.getPageDTOS()[slideId].getNotes()}">
+            <div class="mainNote" th:id="${(noteStat.count)*1000}" th:if="${note.getParentId()==0 && ( ((note.getUsername()!=session.userAccount.getUsername()) && note.getVisibility()==1) || note.getUsername() == session.userAccount.getUsername() )}" th:each="note : ${lectureDTO.getPageDTOS()[slideId].getNotes()}">
                 <div class="noteTop">
                     <span class="noteTitle" th:utext="${note.getTitle()}"></span>
+                    <span th:if="${note.getVisibility() == 0}" style="color: #8c8c8c">(hidden)</span>
                     <button th:id="${(noteStat.count)*1000+1}" class="hideShow pull-right btn btn-sm btn-default">Hide/Show Contents</button>
                 </div>
                 <div class="noteContent" th:id="${(noteStat.count)*1000+2}" th:utext="${note.getContent()}"></div>
@@ -150,6 +151,8 @@
                         <span class="manageLink" th:if="${session.userAccount.getUsername() != note.getUsername() && session.userAccount.getUsername() != 'admin' }"><button th:id="${(noteStat.count)*1000+7}" type="button" class="btn btn-link colButtons report" data-toggle="modal" data-target="#myModal">Report this note</button></span>
                         <span class="manageLink" th:if="${session.userAccount.getUsername() == note.getUsername()}"><a th:href="@{/edit(noteId=${note.getId()})}">Edit</a></span>
                         <span class="manageLink" th:if="${session.userAccount.getUsername() == note.getUsername() || session.userAccount.getUsername() == 'admin' }"><a th:href="@{/delete(noteId=${note.getId()})}" onclick='return confirm("Are you sure you want to delete this note? This will permanently remove this note and all of the replies in it and cannot be undone.")'>Delete</a></span>
+                        <span class="manageLink" th:if="${session.userAccount.getUsername() == note.getUsername() && note.getVisibility() == 1}"><button th:id="${(noteStat.count)*1000+7}" class="btn btn-link hideNote">Hide from others</button></span>
+                        <span class="manageLink" th:if="${session.userAccount.getUsername() == note.getUsername() && note.getVisibility() == 0}"><button th:id="${(noteStat.count)*1000+8}" class="btn btn-link showNote">Show to others</button></span>
                     </span>
                 </div>
                 <div class="noteHr"></div>

@@ -8,7 +8,7 @@ import java.util.List;
 @Mapper
 public interface NoteMapper {
 
-    @Insert("INSERT INTO note (page_id,username,title,content,gmt_create,gmt_modified,parent_id,mark) VALUES (#{pageId},#{username},#{title},#{content},#{gmtCreate},#{gmtModified},#{parentId},#{mark})")
+    @Insert("INSERT INTO note (page_id,username,title,content,gmt_create,gmt_modified,parent_id,visibility) VALUES (#{pageId},#{username},#{title},#{content},#{gmtCreate},#{gmtModified},#{parentId},#{visibility})")
     void InsertNewNote(Note note);
 
     @Select("SELECT * FROM note WHERE page_id=#{pageId}")
@@ -34,4 +34,8 @@ public interface NoteMapper {
 
     @Delete("DELETE FROM note WHERE parent_id=#{parentId}")
     void deleteNotesByParentId(@Param("parentId") int parentId);
+
+    @Update("UPDATE note SET visibility=#{visibility} WHERE id=#{noteId}")
+    void updateVisibility(@Param("noteId") int noteId,
+                          @Param("visibility") int visibility);
 }

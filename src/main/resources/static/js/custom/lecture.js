@@ -11,6 +11,8 @@ $(document).ready(function(){
     let $mnb = $("#myNotesButton");
     let $mcb = $("#myCollectionButton");
     let $cb = $(".colButtons")
+    let $hn = $(".hideNote");
+    let $sn = $(".showNote");
 
     let $rt = $(".requiredTitle");
     let $he = $("#hideEditor");
@@ -274,6 +276,7 @@ $(document).ready(function(){
         }
     })
 
+    //"Report this note" button
     $(".report").click(function (event){
         let thisId = parseInt(event.target.id);
         reportNoteId = parseInt($("#"+(thisId - 3)).val());
@@ -282,6 +285,7 @@ $(document).ready(function(){
 
     })
 
+    //submit report button
     $("#reportSubmit").click(function (){
         let $reCo = $("#reportContents");
         if(!confirm("Are you sure you want to submit?")){
@@ -335,6 +339,62 @@ $(document).ready(function(){
         $nb.show();
     });
 
+    //"hide from others" button
+    $hn.click(function (event){
+        let thisId = parseInt(event.target.id);
+        let targetNoteId = parseInt($("#"+(thisId - 3)).val());
+
+        let tf = confirm("Are you sure you want to hide this note? ");
+        if (!tf){   //if the user is not ready, stop this function
+            return null;
+        }
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            contentType:"application/json; charset=UTF-8",
+            url: "/hideShow" ,
+            data: JSON.stringify({
+                "noteId" : targetNoteId,
+                "visibility": 0
+            }),
+            success: function () {
+                window.location.reload();
+            },
+            error : function() {
+                alert("Error! hide");
+            }
+        });
+    })
+
+    //"show to others" button
+    $sn.click(function (event){
+        let thisId = parseInt(event.target.id);
+        let targetNoteId = parseInt($("#"+(thisId - 4)).val());
+
+        let tf = confirm("Are you sure you want to show this note? ");
+        if (!tf){   //if the user is not ready, stop this function
+            return null;
+        }
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            contentType:"application/json; charset=UTF-8",
+            url: "/hideShow" ,
+            data: JSON.stringify({
+                "noteId" : targetNoteId,
+                "visibility": 1
+            }),
+            success: function () {
+                window.location.reload();
+            },
+            error : function() {
+                alert("Error! show");
+            }
+        });
+    })
+
     //"submit" button
     $sb.click(function (){
         let $title = $("#inputTitle").val() ;
@@ -368,7 +428,7 @@ $(document).ready(function(){
                 "content" : $ic.val(),
                 "gmtCreate" : null,
                 "gmtModified" : null,
-                "mark" : 0,
+                "visibility" : 1,
                 "parentId" : $parentId
             }),
             success: function (response) {
