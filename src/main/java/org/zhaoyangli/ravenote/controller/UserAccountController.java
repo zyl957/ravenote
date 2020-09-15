@@ -38,7 +38,7 @@ public class UserAccountController {
             String inputPassword = signInDTO.getPassword();
             //retrieve password in the database
             UserAccount userAccount = userAccountService.getUserAccountByUsername(inputUsername);
-            if (userAccount.getPassword()==null){
+            if (userAccount==null){
                 return new ExceptionJsonObj(CustomErrorCodeEnum.WRONG_USERNAME_OR_PASSWORD);
             }
             if(userAccount.getPassword().equals(inputPassword)){

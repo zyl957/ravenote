@@ -59,7 +59,7 @@
             <input type="hidden" th:value="${note.getPageId()}" id="notePageId" name="pageId">
             <input type="hidden" th:value="${session.userAccount.getUsername()}" id="noteUsername" name="username">
             <input type="hidden" th:value="${note.getGmtCreate()}" id="noteGmtCreate" name="gmtCreate">
-            <input type="hidden" th:value="${note.getMark()}" id="noteMark" name="mark">
+            <input type="hidden" th:value="${note.getVisibility()}" id="noteVisibility" name="visibility">
             <input type="hidden" th:value="${note.getParentId()}" id="noteParentId" name="parentId">
             <button id="submitButton" type="submit" class="btn btn-success" onclick="alert('Submit Successfully!')">Submit</button>
         </form>

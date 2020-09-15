@@ -24,5 +24,4 @@ public class Note {
     private int visibility;
 
     private int parentId;
-
 }

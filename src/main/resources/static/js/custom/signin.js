@@ -22,7 +22,7 @@ $(function (){
                 }
             },
             error : function() {
-                alert("Error！");
+                alert("Error! UA1");
             }
         });
     })
