@@ -2,10 +2,7 @@ package org.zhaoyangli.ravenote.exception;
 
 import lombok.Data;
 
-/**
- * Exception handling object especially for JSON transport
- */
-
+// to package a object which implemented CustomErrorCode into a JSON object
 @Data
 public class ExceptionJsonObj {
 

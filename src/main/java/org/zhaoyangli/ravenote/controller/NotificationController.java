@@ -16,7 +16,6 @@ import org.zhaoyangli.ravenote.service.UserService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -39,12 +38,13 @@ public class NotificationController {
         userService.userValidationCheck(user, userAccount);
 
         List<Notification> notifications = notificationService.getNotificationByReceiver(username);
-        Collections.reverse(notifications);
+        Collections.reverse(notifications);     // Reverse the chronological order to let newer notifications get displayed earlier
         model.addAttribute("notifications",notifications);
 
         return "notification";
     }
 
+    //mark a notification as read according to its id
     @ResponseBody
     @PostMapping(value = "/notification/read", produces = "application/json")
     public ExceptionJsonObj read(@RequestParam("id") int id){
@@ -54,6 +54,7 @@ public class NotificationController {
         return new ExceptionJsonObj(CustomErrorCodeEnum.OPERATION_SUCCESS) ;
     }
 
+    //mark all notifications as read according to the username of the current user
     @ResponseBody
     @PostMapping(value = "/notification/allRead", produces = "application/json")
     public ExceptionJsonObj allRead(@RequestParam("receiver") String receiver){
@@ -63,6 +64,7 @@ public class NotificationController {
         return new ExceptionJsonObj(CustomErrorCodeEnum.OPERATION_SUCCESS) ;
     }
 
+    //get all unread notifications according to the current user
     @ResponseBody
     @PostMapping(value = "/notification/unreadNumber")
     public int unreadNumber(@RequestParam("receiver") String receiver){

@@ -23,9 +23,6 @@ public class MyController {
     UserAccountTool userAccountTool;
 
     @Resource
-    private UserService userService;
-
-    @Resource
     PageService pageService;
 
     @Resource
@@ -34,12 +31,6 @@ public class MyController {
     @Resource
     private CollectionService collectionService;
 
-    @Resource
-    private LectureService lectureService;
-
-    @Resource
-    private UnitService unitService;
-
     @RequestMapping("/my-notes")
     public String myNotes(@RequestParam("username") String username,
                           HttpServletRequest request,
@@ -47,6 +38,7 @@ public class MyController {
 
         userAccountTool.userValidationCheck(request, username);
 
+        // Combine some required attributes of the model note and page by iteration
         List<Note> notes = noteService.getNotesByUsername(username);
         List<MyNoteDTO> myNoteDTOS = new ArrayList<>();
         for (Note note : notes){

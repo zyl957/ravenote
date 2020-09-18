@@ -15,7 +15,7 @@ import java.util.List;
 @Controller
 public class HomeController {
 
-    @Resource   //Match by name
+    @Resource   //Matches firstly by name. @Autowired matches firstly by type
     private UnitService unitService;
 
     @RequestMapping({"/","/home","/index"})

@@ -6,6 +6,7 @@ $(function (){
     $sim.empty();
     $sim.append($("#hiddenContext").val());     // Disable autosave of Simditor and append the content need to edit
 
+    // disables the "submit" button if a note is being edited while the title is empty
     $it.on("input propertychange",function (){
             if ($it.val()===""){
                 $sb.attr("disabled","disabled");

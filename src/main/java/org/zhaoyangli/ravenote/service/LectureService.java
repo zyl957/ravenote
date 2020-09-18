@@ -35,6 +35,8 @@ public class LectureService {
 
 
     public LectureDTO getLectureDTO(String unitId, String lectureId){
+
+        // retrieving the lecture in the database, and return corresponding errors if the unit or the lecture cannot be found
         Lecture lecture = lectureMapper.getLecture(unitId,lectureId);
         if (lecture==null){
             if (unitMapper.getUnitByUnitId(unitId)==null){
@@ -43,10 +45,13 @@ public class LectureService {
                 throw new CustomException(CustomErrorCodeEnum.LECTURE_NOT_FOUND);
             }
         }
+
         LectureDTO lectureDTO = new LectureDTO();
         List<PageDTO> pageDTOList = new ArrayList<>();
-        BeanUtils.copyProperties(lecture, lectureDTO);
-        List<Page> pages = pageMapper.getAllPages(unitId,lectureId);
+        BeanUtils.copyProperties(lecture, lectureDTO);  // extract the information in the lecture object to its DTO
+        List<Page> pages = pageMapper.getAllPages(unitId,lectureId);    // get all the pages of this lecture
+
+        // add note objects into pageDTOs, and add pageDTOs into the lecture DTO
         for(Page page:pages){
             PageDTO pageDTO = new PageDTO();
             BeanUtils.copyProperties(page, pageDTO);
@@ -54,6 +59,7 @@ public class LectureService {
             pageDTO.setNotes(notes);
             pageDTOList.add(pageDTO);
         }
+
         lectureDTO.setNumOfPages(pages.size());
         lectureDTO.setPageDTOS(pageDTOList);
 

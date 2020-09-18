@@ -45,7 +45,7 @@ public class SignUpController {
         User user = new User(username);
         userService.insertNewUser(user);
 
-        //temporary
+        //temporarily involving all users in the existing two units
         userUnitService.insertUserUnit(username);
 
         return "signin";

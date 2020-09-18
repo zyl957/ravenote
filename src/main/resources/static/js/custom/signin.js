@@ -1,6 +1,7 @@
 $(function (){
+    // logic for the "submit" button on the sign-in page
     $("#sub").click(function (){
-        $.ajax({
+        $.ajax({    // pass the input username and the password to the controller via JSON object
             type: "POST",
             dataType: "json",
             contentType:"application/json; charset=UTF-8",
@@ -14,7 +15,6 @@ $(function (){
                     window.location.replace("/home");
                 }
                 else {
-                    console.log(response);
                     let $alert  = $("#alert");
                     $alert.empty();
                     $alert.append(response.message) ;

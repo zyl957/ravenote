@@ -1,5 +1,6 @@
 package org.zhaoyangli.ravenote.exception;
 
+// a child class of the RuntimeException for extracting the custom error message
 public class CustomException extends RuntimeException {
 
     private int code;

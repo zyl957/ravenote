@@ -43,8 +43,8 @@ public class UnitService {
         }
     }
 
+    // get the list of all of the unit objects of the units that a user is taking
     public List<Unit> getUnitList(String username){
-
         List<String> unitIds = getUnitIdsByUsername(username);
         List<Unit> units = new ArrayList<>();
         for (String unitId : unitIds) {

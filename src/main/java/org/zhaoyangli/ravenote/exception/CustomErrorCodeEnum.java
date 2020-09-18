@@ -1,5 +1,7 @@
 package org.zhaoyangli.ravenote.exception;
 
+// the enumeration of all custom error codes and corresponding messages
+// one of the implementation classes of the interface CustomErrorCode
 public enum CustomErrorCodeEnum implements CustomErrorCode{
 
     OPERATION_SUCCESS(1000,"Success!"),

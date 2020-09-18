@@ -7,7 +7,7 @@ import java.util.Date;
 @Data
 public class UserAccount {
 
-    //auto increment id for database
+    //auto increment id, used as the primary key of its corresponding table
     private int id;
 
     private String username;

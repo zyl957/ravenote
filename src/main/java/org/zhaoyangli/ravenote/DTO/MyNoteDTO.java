@@ -5,19 +5,29 @@ import lombok.Data;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * the DTO for "My Note" button related logic
+ * stores attributes of some of a note and some of its corresponding page
+ */
+
 @Data
 public class MyNoteDTO {
 
     private int id;
 
+    // note title
     private String title;
 
+    // current user
     private String username;
 
+    // Note creation time
     private Date gmtCreate;
 
+    // Note modification time
     private Date gmtModified;
 
+    // information of the page which this note is on
     private String unitId;
 
     private String lectureId;

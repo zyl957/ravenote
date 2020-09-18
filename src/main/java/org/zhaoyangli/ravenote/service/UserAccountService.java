@@ -16,11 +16,7 @@ public class UserAccountService {
     private UserAccountMapper userAccountMapper;
 
     public String getPasswordByUsername(String inputUsername) {
-        String password = userAccountMapper.getPasswordByUsername(inputUsername);
-//        if(password == null){
-//            throw new CustomException(CustomErrorCodeEnum.USER_NOT_FOUND);
-//        }
-        return password;
+        return userAccountMapper.getPasswordByUsername(inputUsername);
     }
 
     public void updateCookie(String token, String inputUsername) {

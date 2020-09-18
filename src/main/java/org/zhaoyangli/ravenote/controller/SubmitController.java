@@ -37,9 +37,9 @@ public class SubmitController {
         tempNote.setGmtCreate(date);
         tempNote.setGmtModified(date);
 
-        if (tempNote.getTitle().equals("")){
-            tempNote.setTitle(null);
-            notificationService.createNotification(tempNote,date);
+        if (tempNote.getTitle().equals("")){    //only replies have empty titles
+            tempNote.setTitle(null);    //reformatting the title to cooperate the database setting
+            notificationService.createNotification(tempNote,date);  //create a notification for this reply to the receiver
         }
         noteService.InsertNewNote(tempNote);
 
@@ -50,12 +50,12 @@ public class SubmitController {
     public String submitEdit(@ModelAttribute(value="note") Note note){
         Date date = new Date();
         note.setGmtModified(date);
-        if (note.getTitle()!=null){
+        if (note.getTitle()!=null){     //if received object is a note, go to the corresponding lecture page
             noteService.updateNote(note);
             Page page = pageService.getPageById(note.getPageId());
             return "redirect:/lecture?unitId="+page.getUnitId()+"&lectureId="+page.getLectureId()+"&slideId="+page.getSlideId();
         } else{
-            noteService.updateReply(note);
+            noteService.updateReply(note);  // if it is a reply, go to the corresponding detailed note page
             return "redirect:/note?noteId="+note.getParentId();
         }
     }

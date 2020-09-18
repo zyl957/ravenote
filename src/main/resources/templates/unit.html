@@ -4,13 +4,15 @@
     <meta http-equiv="content-type" content="text.html" charset="UTF-8">
     <th:block th:insert="~{fragments :: head}"></th:block>
     <link rel="stylesheet" href="css/custom/unit.css">
-    <!--    <script type="application/javascript" src="js/custom/home.js"></script>-->
+
     <title>RaveNote - Lecture Details</title>
 </head>
 <body>
     <div th:replace="fragments::nav"></div>
 
     <div th:if="${session.userAccount != null}" class="container-fluid center-Container">
+
+        <!--   breadcrumb navigator     -->
         <div class="row">
             <div>
                 <ol id="breadcrumb" class="breadcrumb">
@@ -19,12 +21,15 @@
                 </ol>
             </div>
         </div>
+
+        <!--     page title     -->
         <div class="row top-part">
             <div class="col-lg-12 col-md-12 col-xs-12">
                 <h3><span class="glyphicon glyphicon-book" aria-hidden="true"></span><span th:text="' '+${unitId}"></span>&ensp;-&ensp;Lectures</h3>
             </div>
         </div>
         <hr>
+
         <div class="main-display" th:each=" lecture : ${lectures}">
             <div>
                 <h4 class="unitId-display">

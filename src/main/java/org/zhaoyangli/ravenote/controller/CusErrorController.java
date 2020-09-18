@@ -43,7 +43,7 @@ public class CusErrorController implements ErrorController {
     private HttpStatus getStatus(HttpServletRequest request) {
         Integer statusCode = (Integer)request.getAttribute("javax.servlet.error.status_code");
         if (statusCode == null) {
-            return HttpStatus.INTERNAL_SERVER_ERROR;
+            return HttpStatus.INTERNAL_SERVER_ERROR;    //500 Server Error
         } else {
             try {
                 return HttpStatus.valueOf(statusCode);

@@ -8,8 +8,10 @@ import org.zhaoyangli.ravenote.DTO.HideShowDTO;
 import org.zhaoyangli.ravenote.exception.CustomErrorCodeEnum;
 import org.zhaoyangli.ravenote.exception.ExceptionJsonObj;
 import org.zhaoyangli.ravenote.model.*;
-import org.zhaoyangli.ravenote.service.*;
-import org.zhaoyangli.ravenote.tools.UserAccountTool;
+import org.zhaoyangli.ravenote.service.CollectionService;
+import org.zhaoyangli.ravenote.service.NoteService;
+import org.zhaoyangli.ravenote.service.PageService;
+import org.zhaoyangli.ravenote.service.ReportService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -63,11 +65,11 @@ public class NoteController {
 
         Note note = noteService.getNoteById(noteId, request);
         noteService.deleteNotes(noteId);
-        if (note.getTitle()!=null){
+        if (note.getTitle()!=null){     // if this note is a note
             Page page = pageService.getPageById(note.getPageId());
             return "redirect:/lecture?unitId="+page.getUnitId()+"&lectureId="+page.getLectureId()+"&slideId="+page.getSlideId();
         }
-        else{
+        else{   // it is a reply
             return "redirect:/note?noteId="+note.getParentId();
         }
     }
@@ -85,16 +87,17 @@ public class NoteController {
     @ResponseBody
     @PostMapping(value = "/collection/operation", consumes = "application/json",produces = "application/json")
     public ExceptionJsonObj CollectNotes(@RequestBody CollectionDTO collectionDTO){
-        if (collectionDTO.getIsCollect()){
+        if (collectionDTO.getIsCollect()){  // if this behaviour is "add to collection"
             collectionDTO.setGmtCreate(new Date());
             collectionService.insertCollection(collectionDTO);
         }
-        else {
+        else {  //it is "remove from collection"
             collectionService.removeFromCollection(collectionDTO);
         }
         return new ExceptionJsonObj(CustomErrorCodeEnum.OPERATION_SUCCESS);
     }
 
+    //get the list of the ids of the notes in the current user's collection
     @ResponseBody
     @PostMapping(value = "/collection",consumes = "application/json",produces = "application/json")
     public List<Integer> checkCollection(HttpServletRequest request){
@@ -107,6 +110,7 @@ public class NoteController {
         return collectedIds;
     }
 
+    //add a report into the database
     @ResponseBody
     @PostMapping(value = "/report", consumes = "application/json",produces = "application/json")
     public ExceptionJsonObj reportNote(@RequestBody Report report){

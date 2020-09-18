@@ -9,10 +9,13 @@ public class MyReplyDTO {
 
     private int id;
 
+    // id of its parent note
     private int parentId;
 
+    // title of its parent note
     private String parentTitle;
 
+    // content of this reply
     private String content;
 
     private Date gmtCreate;

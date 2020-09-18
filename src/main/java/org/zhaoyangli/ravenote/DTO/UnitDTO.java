@@ -12,6 +12,7 @@ public class UnitDTO {
 
     private String unitName;
 
+    // all of the lectures this unit contains
     private Lecture[] lectures;
 
 }

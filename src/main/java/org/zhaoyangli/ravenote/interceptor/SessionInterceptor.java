@@ -17,7 +17,7 @@ public class SessionInterceptor implements HandlerInterceptor {
     @Resource
     private UserAccountMapper userAccountMapper;
 
-    // execute before pages load
+    // execute before every pages load
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         // Use session and cookie to keep signing in

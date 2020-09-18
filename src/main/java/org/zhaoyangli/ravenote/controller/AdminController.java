@@ -23,6 +23,7 @@ public class AdminController {
     @RequestMapping("/admin")
     public String admin(HttpServletRequest request){
 
+        // The identity authentication before accessing the backstage page
         UserAccount userAccount = (UserAccount) request.getSession().getAttribute("userAccount");
         if (!userAccount.getUsername().equals("admin")){
             throw new CustomException(CustomErrorCodeEnum.HAVE_NO_ACCESS);
@@ -43,6 +44,7 @@ public class AdminController {
         return "adminReport";
     }
 
+    // remove a report at the backstage
     @RequestMapping("/admin/report/remove")
     public String reportRemove(@RequestParam("reportId") int reportId){
         reportService.deleteReport(reportId);

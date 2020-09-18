@@ -1,5 +1,6 @@
 $(function (){
-    $.ajax({    //get username
+    // displays the number of the unread notifications on the navigation bar
+    $.ajax({    //get the username of the useraccount stored in the session
         type: "POST",
         dataType: "json",
         contentType:"application/json; charset=UTF-8",
@@ -9,7 +10,7 @@ $(function (){
                 type: "POST",
                 data:{receiver : userAccount.username},
                 url: "/notification/unreadNumber" ,
-                success: function (count) {
+                success: function (count) {     // the number of the unread notifications
                     $("#notiBadge").html(count);
                 },
                 error : function() {

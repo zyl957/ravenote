@@ -21,6 +21,8 @@
 
     <!-- Slides display area  -->
     <div th:if="${session.userAccount != null}" class="container-fluid center-Container">
+
+        <!--   breadcrumb navigator     -->
         <div class="row">
             <ol id="breadcrumb" class="breadcrumb">
                 <li><a href="/">Units</a></li>
@@ -29,6 +31,8 @@
                 <li class="active">Replies</li>
             </ol>
         </div>
+
+        <!--     page title     -->
         <div class="col-lg-12 col-md-12 col-xs-12">
             <div class="row top-part">
                 <div>
@@ -36,6 +40,7 @@
                 </div>
             </div>
             <hr>
+
             <!-- Slide -->
             <div class="row main-display">
                 <img class="slide center-block" th:src="${page.getSlideUrl()}" alt="Hi">
@@ -43,6 +48,7 @@
         </div>
     </div>
 
+    <!--   second  page title     -->
     <div th:if="${session.userAccount != null}" class="container-fluid center-Container" id="notesArea">
         <div class="row top-part">
             <div class="col-lg-12 col-md-12 col-xs-12">
@@ -50,6 +56,8 @@
             </div>
         </div>
         <hr>
+
+        <!--   corresponding note display area   -->
         <div class="row">
             <div th:class="mainNote">
                 <div class="noteTop">
@@ -76,6 +84,8 @@
             </div>
         </div>
         <hr>
+
+        <!--   replies display area   -->
         <div class="replyHeader">
             <span class="replyTitle"> Replies: </span>
             <span><button class="btn btn-primary pull-right" id="noteButton">Create reply</button></span>
@@ -106,6 +116,8 @@
                 </div>
             </div>
         </div>
+
+        <!--   load module     -->
         <div class="loadMore" th:align="center">
                 <span>
                     <button id="loadButton1" type="button" class="btn btn-link" style="display: none">Load more</button>
@@ -117,7 +129,11 @@
                 </span>
 
         </div>
-        <div th:if="${replies.size()==0}" class="emptyWarning" th:utext="'There are 0 replies in this note'"></div>
+
+        <div th:if="${replies.size()==0}" class="emptyWarning">
+            <span th:utext="'There are 0 replies in this note'"></span>
+        </div>
+
     </div>
 
     <!-- Report modal -->

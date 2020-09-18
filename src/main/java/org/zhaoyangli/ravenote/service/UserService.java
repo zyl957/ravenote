@@ -15,7 +15,6 @@ public class UserService {
     @Resource
     private UserMapper userMapper;
 
-
     public User getUserByUsername(String username) {
         User user = userMapper.getUserByUsername(username);
         if (user == null){

@@ -19,8 +19,10 @@ public class PageDTO {
 
     private int slideId;
 
+    // the URL to the slide image on the local server
     private String slideUrl;
 
+    // all of the notes this page contains
     private List<Note> notes;
 
 }

@@ -16,6 +16,8 @@
 <div th:replace="fragments::nav"></div>
 
 <div class="container-fluid center-Container">
+
+    <!--     page title     -->
     <div class="row top-part">
         <div class="col-lg-12 col-md-12 col-xs-12">
             <div class="topList">
@@ -24,6 +26,7 @@
         </div>
     </div>
     <hr>
+
     <div class="row">
         <div class="mainNote" th:id="${myNoteDTOStat.count*1000}" th:each="myNoteDTO : ${myNoteDTOS}">
             <div class="nBody">
@@ -49,6 +52,8 @@
             </div>
             <hr>
         </div>
+
+        <!--   load module     -->
         <div class="loadMore" th:align="center">
                 <span>
                     <button id="loadButton1" type="button" class="btn btn-link" style="display: none">Load more</button>
@@ -59,6 +64,7 @@
                     <button id="loadAllButton" type="button" class="btn btn-link" style="display: none">Load all</button>
                 </span>
         </div>
+
         <div th:if="${myNoteDTOS.size()==0}" class="emptyWarning">
             <span th:utext="'You have not collect any notes, go to collect one!'"></span>
         </div>

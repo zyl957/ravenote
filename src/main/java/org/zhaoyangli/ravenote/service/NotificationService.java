@@ -23,13 +23,16 @@ public class NotificationService {
     @Transactional
     public void createNotification(Note reply, Date date) {
         Notification notification = new Notification();
-        Note note = noteMapper.getNoteById(reply.getParentId());
-        notification.setStatus(0);
+        Note note = noteMapper.getNoteById(reply.getParentId());    // get the parent note for this reply
+
+        // initialisation of the notification object
+        notification.setStatus(0);  // mark as unread
         notification.setTargetNoteId(reply.getParentId());
         notification.setTargetNoteTitle(note.getTitle());
         notification.setSender(reply.getUsername());
         notification.setReceiver(note.getUsername());
         notification.setGmtCreate(date);
+
         notificationMapper.insertNotification(notification);
     }
 

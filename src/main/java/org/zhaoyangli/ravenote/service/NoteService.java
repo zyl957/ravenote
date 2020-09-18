@@ -20,8 +20,8 @@ public class NoteService {
     @Resource
     private NoteMapper noteMapper;
 
+    // delete a note and all of its replies
     public void deleteNotes(int noteId){
-
         noteMapper.deleteNoteById(noteId);
         noteMapper.deleteNotesByParentId(noteId);
 
@@ -35,6 +35,7 @@ public class NoteService {
         return note;
     }
 
+    // if a note requires a special access, then conduct an authentication
     public Note getNoteById(int noteId, HttpServletRequest request) {
         UserAccount userAccount = (UserAccount) request.getSession().getAttribute("userAccount");
         Note note = noteMapper.getNoteById(noteId);
@@ -47,6 +48,7 @@ public class NoteService {
         return note;
     }
 
+    // get all replies of a note
     public List<Note> getNotesByParentId(int noteId) {
         List<Note> replies = noteMapper.getNotesByParentId(noteId);
         if (replies == null){

@@ -10,8 +10,10 @@ public class UserAccountDTO {
 
     private String username;
 
+    // all of the units this user account is taking
     private Unit[] units;
 
+    // all of the ids of the collection information of this user account
     private int[] collection;
 
 }

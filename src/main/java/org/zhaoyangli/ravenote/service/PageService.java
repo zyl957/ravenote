@@ -17,9 +17,6 @@ public class PageService {
     @Resource
     private PageMapper pageMapper;
 
-    @Resource
-    private NoteMapper noteMapper;
-
     public Page getPageById(int pageId){
         Page page = pageMapper.getPageById(pageId);
         if (page == null){

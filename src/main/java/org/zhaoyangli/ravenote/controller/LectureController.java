@@ -21,7 +21,6 @@ public class LectureController {
     @Resource
     private UnitService unitService;
 
-
     @GetMapping("/lecture")
     public String Lecture(@RequestParam("unitId") String unitId,
                           @RequestParam("lectureId") String lectureId,

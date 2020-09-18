@@ -13,6 +13,7 @@
     </div>
 
     <div th:if="${session.userAccount != null}" class="container-fluid center-Container">
+        <!--   breadcrumb navigator     -->
         <div class="row">
             <div>
                 <ol id="breadcrumb" class="breadcrumb">
@@ -20,12 +21,16 @@
                 </ol>
             </div>
         </div>
+
+        <!--     page title     -->
         <div class="row top-part">
             <div class="col-lg-12 col-md-12 col-xs-12">
                 <h3><span class="glyphicon glyphicon-education" aria-hidden="true"></span>&ensp;Units</h3>
             </div>
         </div>
         <hr>
+
+        <!--   displays all incoming units via loop    -->
         <div class="main-display" th:each="unit : ${units}">
             <div>
                 <h4 class="unitId-display">

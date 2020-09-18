@@ -17,6 +17,8 @@
 
     <!-- Profile Display -->
     <div th:if="${session.userAccount != null}" class="container-fluid center-Container" id="profileA">
+
+        <!--     page title     -->
         <div class="row top-part">
             <div class="col-lg-12 col-md-12 col-xs-12">
                 <div class="topList">
@@ -26,6 +28,7 @@
             </div>
         </div>
         <hr>
+
         <div class="main-display">
             <div>
                 <span th:utext="'<b>Username:</b> '"></span><span th:text="${user.getUsername()}"></span>

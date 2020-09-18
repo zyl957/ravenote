@@ -19,8 +19,8 @@ public class LectureDTO {
     // YYYY-MM-DD
     private Date date;
 
+    // corresponding link to the recording of the lecture stored in the database
     private String videoUrl;
-
 
     // the number of pages a lecture has
     private int numOfPages;
